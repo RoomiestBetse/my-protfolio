@@ -56,7 +56,7 @@ const StatItem = ({ s, delay }: { s: (typeof stats)[number]; delay: number }) =>
 
 const StatsSection = () => {
   return (
-    <section className="relative py-24 px-6 md:px-12 lg:px-20 border-y border-border/40 bg-background/40 backdrop-blur-md">
+    <section className="relative py-24 px-6 md:px-12 lg:px-20 border-y border-border/40 bg-background/60">
       <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-6">
         {stats.map((s, i) => (
           <StatItem key={s.label} s={s} delay={i * 0.1} />

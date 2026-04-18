@@ -116,8 +116,8 @@ const TiltCard = ({
   const reduce = useReducedMotion();
   const rotateX = useMotionValue(0);
   const rotateY = useMotionValue(0);
-  const springX = useSpring(rotateX, { stiffness: 180, damping: 22 });
-  const springY = useSpring(rotateY, { stiffness: 180, damping: 22 });
+  const springX = useSpring(rotateX, { stiffness: 80, damping: 20 });
+  const springY = useSpring(rotateY, { stiffness: 80, damping: 20 });
 
   const handleMouseMove = (e: MouseEvent) => {
     if (reduce || !ref.current) return;
@@ -153,11 +153,11 @@ const TiltCard = ({
           src={c.img}
           alt={c.title}
           loading="lazy"
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
         <div className="absolute inset-0 flex items-end justify-center pb-8 opacity-0 group-hover:opacity-100 transition-opacity duration-400">
-          <span className="flex items-center gap-2 text-foreground font-semibold uppercase tracking-wider text-xs bg-background/60 backdrop-blur-md px-4 py-2 rounded-full border border-border/50">
+          <span className="flex items-center gap-2 text-foreground font-semibold uppercase tracking-wider text-xs bg-background/80 px-4 py-2 rounded-full border border-border/50">
             View Details <ArrowUpRight size={13} />
           </span>
         </div>
@@ -183,8 +183,8 @@ const CarProjectsSection = () => {
 
   const rawX = useMotionValue(-9999);
   const rawY = useMotionValue(-9999);
-  const cursorX = useSpring(rawX, { stiffness: 220, damping: 28 });
-  const cursorY = useSpring(rawY, { stiffness: 220, damping: 28 });
+  const cursorX = useSpring(rawX, { stiffness: 120, damping: 24 });
+  const cursorY = useSpring(rawY, { stiffness: 120, damping: 24 });
 
   const handleSectionMouseMove = (e: MouseEvent<HTMLElement>) => {
     rawX.set(e.clientX + 24);
@@ -246,8 +246,8 @@ const ModalCard = ({ card }: { card: (typeof carCards)[number] }) => {
   const reduce = useReducedMotion();
   const rotateX = useMotionValue(0);
   const rotateY = useMotionValue(0);
-  const springX = useSpring(rotateX, { stiffness: 160, damping: 22 });
-  const springY = useSpring(rotateY, { stiffness: 160, damping: 22 });
+  const springX = useSpring(rotateX, { stiffness: 80, damping: 20 });
+  const springY = useSpring(rotateY, { stiffness: 80, damping: 20 });
 
   const handleMouseMove = (e: MouseEvent) => {
     if (reduce || !ref.current) return;

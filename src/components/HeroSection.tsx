@@ -18,8 +18,8 @@ const HeroSection = () => {
   const avatarRef = useRef<HTMLDivElement>(null);
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
-  const smx = useSpring(mx, { stiffness: 120, damping: 18, mass: 0.6 });
-  const smy = useSpring(my, { stiffness: 120, damping: 18, mass: 0.6 });
+  const smx = useSpring(mx, { stiffness: 80, damping: 18, mass: 0.6 });
+  const smy = useSpring(my, { stiffness: 80, damping: 18, mass: 0.6 });
   const handleAvatarMove = (e: MouseEvent) => {
     if (reduce || !avatarRef.current) return;
     const rect = avatarRef.current.getBoundingClientRect();
@@ -63,7 +63,7 @@ const HeroSection = () => {
               ref={avatarRef}
               onMouseMove={handleAvatarMove}
               onMouseLeave={resetAvatar}
-              style={{ x: smx, y: smy }}
+              style={{ x: smx, y: smy, willChange: "transform" }}
               className="relative w-full aspect-square rounded-full overflow-hidden border border-border/50 float-y"
             >
               <img src={avatarImg} alt="Betse Essilfie" fetchPriority="high" decoding="async" className="w-full h-full object-cover object-top pointer-events-none" />

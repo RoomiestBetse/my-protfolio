@@ -1,4 +1,3 @@
-import { Parallax } from "@/components/animations/Parallax";
 import { RevealText } from "@/components/animations/RevealText";
 import { Reveal } from "@/components/animations/Reveal";
 import { MagneticButton } from "@/components/animations/MagneticButton";
@@ -6,12 +5,9 @@ import { MagneticButton } from "@/components/animations/MagneticButton";
 const AboutSection = () => {
   return (
     <section id="about" className="relative section-pad overflow-hidden">
-      <Parallax offset={120} className="absolute -top-20 -left-32 w-[420px] h-[420px]">
-        <div className="gradient-orb w-full h-full opacity-30" />
-      </Parallax>
-      <Parallax offset={-100} className="absolute -bottom-20 -right-32 w-[420px] h-[420px]">
-        <div className="gradient-orb w-full h-full opacity-25" />
-      </Parallax>
+      {/* Static orbs — no parallax scroll listener */}
+      <div className="absolute -top-20 -left-32 w-[420px] h-[420px] gradient-orb opacity-30 pointer-events-none" />
+      <div className="absolute -bottom-20 -right-32 w-[420px] h-[420px] gradient-orb opacity-20 pointer-events-none" />
 
       <div className="relative max-w-5xl mx-auto text-center">
         <Reveal>

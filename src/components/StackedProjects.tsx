@@ -34,7 +34,7 @@ const projects: Project[] = [
     icon: Truck,
     media: (
       <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border/40 group">
-        <img src={lordcoImg} alt="Lordco Auto Parts storefront" loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+        <img src={lordcoImg} alt="Lordco Auto Parts storefront" loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
         <div className="absolute inset-0 flex items-end justify-center pb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-400">
           <span className="flex items-center gap-2 text-foreground font-semibold uppercase tracking-wider text-xs bg-background/60 backdrop-blur-md px-4 py-2 rounded-full border border-border/50">
             View Project <ArrowUpRight size={13} />
@@ -57,7 +57,7 @@ const projects: Project[] = [
     icon: Package,
     media: (
       <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border/40 group">
-        <img src={napaImg} alt="NAPA Auto Parts storefront" loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+        <img src={napaImg} alt="NAPA Auto Parts storefront" loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
         <div className="absolute inset-0 flex items-end justify-center pb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-400">
           <span className="flex items-center gap-2 text-foreground font-semibold uppercase tracking-wider text-xs bg-background/60 backdrop-blur-md px-4 py-2 rounded-full border border-border/50">
             View Project <ArrowUpRight size={13} />
@@ -103,8 +103,8 @@ const ProjectCard = ({ p, index, total }: { p: Project; index: number; total: nu
 
   const rotateX = useMotionValue(0);
   const rotateY = useMotionValue(0);
-  const springX = useSpring(rotateX, { stiffness: 150, damping: 25 });
-  const springY = useSpring(rotateY, { stiffness: 150, damping: 25 });
+  const springX = useSpring(rotateX, { stiffness: 80, damping: 20 });
+  const springY = useSpring(rotateY, { stiffness: 80, damping: 20 });
 
   const handleMouseMove = (e: MouseEvent) => {
     if (reduce || !articleRef.current) return;

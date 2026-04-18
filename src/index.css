@@ -142,10 +142,11 @@
 
   .gradient-orb {
     background: var(--gradient-brand);
-    filter: blur(80px);
+    filter: blur(50px);
     opacity: 0.35;
     border-radius: 50%;
     pointer-events: none;
+    will-change: transform;
   }
 
   .hairline {
@@ -198,16 +199,16 @@
     100% { transform: scale(3.5); opacity: 0; }
   }
 
-  /* Grain overlay */
+  /* Grain overlay — lightweight PNG-based, no SVG filter on every frame */
   .grain-overlay {
     position: fixed;
     inset: 0;
     pointer-events: none;
     z-index: 999;
-    opacity: 0.038;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
     background-repeat: repeat;
-    background-size: 200px;
+    background-size: 180px;
   }
 
   /* Glowing left-border for skill rows */
@@ -219,7 +220,17 @@
     padding-left: 8px;
   }
 
+  /* Promote marquee to its own layer */
+  .marquee-track {
+    will-change: transform;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .marquee, .float-y, .gradient-text-animated { animation: none; }
+  }
+
+  /* Disable expensive 3D/blur effects on devices that can't handle them */
+  @media (hover: none) {
+    .grain-overlay { display: none; }
   }
 }

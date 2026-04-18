@@ -36,8 +36,7 @@ const Index = () => {
           backgroundImage: "url('/images/bg.jpeg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          filter: "blur(4px)",
-          willChange: "transform",
+          filter: "blur(2px)",
         }}
       />
       <div aria-hidden className="fixed inset-0 -z-10 bg-gradient-to-b from-background/70 via-background/90 to-background" />
