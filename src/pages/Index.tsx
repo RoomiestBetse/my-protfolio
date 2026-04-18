@@ -50,24 +50,14 @@ const Index = () => {
       {/* Layer 1 — solid dark base (deepest) */}
       <div aria-hidden className="fixed inset-0 pointer-events-none" style={{ zIndex: -40, background: "hsl(var(--background))" }} />
 
-      {/* Layer 2 — background image */}
-      <div
-        aria-hidden
-        className="fixed inset-0 pointer-events-none opacity-50"
-        style={{
-          zIndex: -30,
-          backgroundImage: "url('/images/bg.jpeg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          filter: "blur(2px)",
-        }}
-      />
-
-      {/* Layer 3 — subtle vignette so text stays readable */}
+      {/* Layer 2 — dark brand gradient */}
       <div
         aria-hidden
         className="fixed inset-0 pointer-events-none"
-        style={{ zIndex: -20, background: "linear-gradient(to bottom, hsl(var(--background)/0.35) 0%, hsl(var(--background)/0.55) 50%, hsl(var(--background)/0.75) 100%)" }}
+        style={{
+          zIndex: -30,
+          background: "radial-gradient(ellipse 120% 80% at 20% 10%, hsl(244 60% 12%) 0%, hsl(230 50% 5%) 55%, hsl(280 40% 8%) 100%)",
+        }}
       />
 
       {/* Layer 4 — cursor-following aurora (above vignette, below content) */}

@@ -1,10 +1,37 @@
-import { ReactNode, useRef, MouseEvent } from "react";
+import { ReactNode, useRef, MouseEvent, useEffect } from "react";
 import { motion, useScroll, useTransform, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Truck, Package, Smartphone } from "lucide-react";
 import { RevealText } from "@/components/animations/RevealText";
 import { Reveal } from "@/components/animations/Reveal";
 import lordcoImg from "@/assets/lordco.jpg";
 import napaImg from "@/assets/napa.jpg";
+
+const AppDemoVideo = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = true;
+    v.play().catch(() => {});
+  }, []);
+  return (
+    <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-fuchsia-500/30 via-indigo-500/20 to-violet-500/30 flex items-center justify-center">
+      <div className="relative w-[180px] aspect-[9/16] rounded-[1.5rem] overflow-hidden border-4 border-foreground/10 shadow-2xl">
+        <video
+          ref={videoRef}
+          src="/app-demo.mov"
+          poster="/placeholder.svg"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="w-full h-full object-cover"
+        />
+      </div>
+    </div>
+  );
+};
 
 interface Project {
   n: string;
@@ -80,13 +107,7 @@ const projects: Project[] = [
     icon: Smartphone,
     link: "https://car-repaipal-real.vercel.app/",
     linkLabel: "View App",
-    media: (
-      <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-fuchsia-500/30 via-indigo-500/20 to-violet-500/30 flex items-center justify-center">
-        <div className="relative w-[180px] aspect-[9/16] rounded-[1.5rem] overflow-hidden border-4 border-foreground/10 shadow-2xl">
-          <video src="/app-demo.mov" poster="/placeholder.svg" autoPlay loop muted playsInline preload="none" className="w-full h-full object-cover" />
-        </div>
-      </div>
-    ),
+    media: <AppDemoVideo />,
   },
 ];
 
