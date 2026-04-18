@@ -171,7 +171,7 @@ const ProjectCard = ({ p, index, total }: { p: Project; index: number; total: nu
             href={p.link ?? "#contact"}
             target={p.link ? "_blank" : undefined}
             rel={p.link ? "noopener noreferrer" : undefined}
-            className={p.link ? "gradient-pill inline-flex items-center gap-2" : "outline-pill"}
+            className={p.link ? "gradient-pill inline-flex items-center gap-2 !px-10 !py-4 !text-sm font-bold tracking-widest shadow-[0_0_40px_-5px_hsl(265_85%_55%/0.8)]" : "outline-pill"}
           >
             {p.linkLabel ?? "Live Project →"}
             {p.link && <ArrowUpRight size={15} />}
