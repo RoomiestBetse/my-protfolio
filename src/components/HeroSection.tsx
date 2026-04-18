@@ -34,8 +34,8 @@ const AnimatedHeading = ({
           <motion.span
             key={i}
             variants={{
-              hidden: { y: "110%", opacity: 0, rotateZ: -8, filter: "blur(6px)" },
-              visible: { y: "0%", opacity: 1, rotateZ: 0, filter: "blur(0px)" },
+              hidden: { y: "110%", opacity: 0, rotateZ: -6 },
+              visible: { y: "0%", opacity: 1, rotateZ: 0 },
             }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="inline-block overflow-visible"
