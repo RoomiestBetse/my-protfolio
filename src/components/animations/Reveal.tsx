@@ -9,7 +9,7 @@ interface RevealProps {
   once?: boolean;
 }
 
-export const Reveal = ({ children, delay = 0, y = 40, className, once = true }: RevealProps) => {
+export const Reveal = ({ children, delay = 0, y = 40, className, once = false }: RevealProps) => {
   const reduce = useReducedMotion();
   if (reduce) return <div className={className}>{children}</div>;
 

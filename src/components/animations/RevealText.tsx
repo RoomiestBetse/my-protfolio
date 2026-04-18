@@ -31,7 +31,7 @@ export const RevealText = ({
         aria-hidden
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: "-80px" }}
+        viewport={{ once: false, margin: "-80px" }}
         transition={{ staggerChildren: stagger, delayChildren: delay }}
         className="inline"
       >
