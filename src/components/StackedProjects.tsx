@@ -1,7 +1,7 @@
 import { ReactNode, useRef, MouseEvent, useEffect } from "react";
 import { motion, useScroll, useTransform, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Truck, Package, Smartphone } from "lucide-react";
-import { RevealText } from "@/components/animations/RevealText";
+import { ScrambleText } from "@/components/animations/ScrambleText";
 import { Reveal } from "@/components/animations/Reveal";
 import lordcoImg from "@/assets/lordco.jpg";
 import napaImg from "@/assets/napa.jpg";
@@ -227,7 +227,7 @@ const StackedProjects = () => {
             ( Selected Work )
           </p>
         </Reveal>
-        <RevealText as="h2" text="PROJECTS" splitBy="letter" className="mega-headline mb-16 gradient-text" />
+        <ScrambleText as="h2" text="PROJECTS" className="mega-headline mb-16 gradient-text" />
 
         <div className="space-y-12 lg:space-y-0">
           {projects.map((p, i) => (
