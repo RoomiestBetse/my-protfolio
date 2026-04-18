@@ -230,49 +230,89 @@ const CarProjectsSection = () => {
 
       <Dialog open={active !== null} onOpenChange={() => setActive(null)}>
         <DialogContent
-          className="max-w-lg border-0 p-0 overflow-hidden rounded-3xl"
-          style={{
-            background: "hsl(var(--card))",
-            boxShadow: "0 0 0 1px hsl(var(--border) / 0.5), 0 25px 80px -10px hsl(265 85% 55% / 0.4)",
-          }}
+          className="max-w-lg border-0 p-0 bg-transparent shadow-none"
         >
           {active !== null && (
+            <ModalCard key={active} card={carCards[active]} />
+          )}
+        </DialogContent>
+      </Dialog>
+    </section>
+  );
+};
+
+const ModalCard = ({ card }: { card: (typeof carCards)[number] }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
+  const rotateX = useMotionValue(0);
+  const rotateY = useMotionValue(0);
+  const springX = useSpring(rotateX, { stiffness: 160, damping: 22 });
+  const springY = useSpring(rotateY, { stiffness: 160, damping: 22 });
+
+  const handleMouseMove = (e: MouseEvent) => {
+    if (reduce || !ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    rotateX.set((y - 0.5) * -10);
+    rotateY.set((x - 0.5) * 10);
+  };
+
+  const handleMouseLeave = () => {
+    rotateX.set(0);
+    rotateY.set(0);
+  };
+
+  return (
             <motion.div
-              key={active}
-              aria-label={carCards[active].modalTitle}
+              ref={ref}
+              aria-label={card.modalTitle}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.25 }}
+              style={reduce ? {
+                background: "hsl(var(--card))",
+                boxShadow: "0 0 0 1px hsl(var(--border) / 0.5), 0 25px 80px -10px hsl(265 85% 55% / 0.4)",
+                borderRadius: "1.5rem",
+                overflow: "hidden",
+              } : {
+                rotateX: springX,
+                rotateY: springY,
+                transformPerspective: 1000,
+                background: "hsl(var(--card))",
+                boxShadow: "0 0 0 1px hsl(var(--border) / 0.5), 0 25px 80px -10px hsl(265 85% 55% / 0.4)",
+                borderRadius: "1.5rem",
+                overflow: "hidden",
+              }}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
             >
-              <VisuallyHidden><DialogTitle>{carCards[active].modalTitle}</DialogTitle></VisuallyHidden>
+              <VisuallyHidden><DialogTitle>{card.modalTitle}</DialogTitle></VisuallyHidden>
               {/* Hero image */}
               <div className="relative overflow-hidden aspect-[16/9]">
                 <img
-                  src={carCards[active].img}
-                  alt={carCards[active].modalTitle}
+                  src={card.img}
+                  alt={card.modalTitle}
                   className="w-full h-full object-cover"
                 />
-                {/* Gradient overlay so text on top reads cleanly */}
                 <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
-                {/* Number watermark */}
                 <span
                   className="absolute top-4 left-5 font-display font-bold text-4xl text-transparent"
                   style={{ WebkitTextStroke: "1.5px hsl(var(--primary))" }}
                 >
-                  {carCards[active].n}
+                  {card.n}
                 </span>
               </div>
 
               {/* Content */}
               <div className="p-6 space-y-4">
-                {/* Glowing title */}
                 <motion.h3
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                   className="font-display text-2xl font-bold uppercase gradient-text"
                 >
-                  {carCards[active].modalTitle}
+                  {card.modalTitle}
                 </motion.h3>
 
                 <motion.p
@@ -281,12 +321,11 @@ const CarProjectsSection = () => {
                   transition={{ delay: 0.15, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                   className="text-muted-foreground leading-relaxed text-sm"
                 >
-                  {carCards[active].modalDesc}
+                  {card.modalDesc}
                 </motion.p>
 
-                {/* Animated bullet list */}
                 <ul className="space-y-2">
-                  {carCards[active].bullets.map((b, i) => (
+                  {card.bullets.map((b, i) => (
                     <motion.li
                       key={b}
                       initial={{ opacity: 0, x: -12 }}
@@ -300,7 +339,6 @@ const CarProjectsSection = () => {
                   ))}
                 </ul>
 
-                {/* Why line with top glow divider */}
                 <motion.p
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -308,14 +346,10 @@ const CarProjectsSection = () => {
                   className="text-xs text-muted-foreground/60 italic pt-3"
                   style={{ borderTop: "1px solid hsl(var(--primary) / 0.2)" }}
                 >
-                  {carCards[active].why}
+                  {card.why}
                 </motion.p>
               </div>
             </motion.div>
-          )}
-        </DialogContent>
-      </Dialog>
-    </section>
   );
 };
 
