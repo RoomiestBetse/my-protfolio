@@ -30,6 +30,7 @@ const Navbar = () => {
       animate={{ y: hidden ? -100 : 0 }}
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
       className="fixed top-0 left-0 right-0 z-50"
+      style={{ willChange: "transform" }}
     >
       <div className="mx-auto max-w-7xl px-6 md:px-12 mt-4">
         <div className="flex items-center justify-between h-14 px-5 md:px-7 rounded-full bg-background/60 backdrop-blur-xl border border-border/40">

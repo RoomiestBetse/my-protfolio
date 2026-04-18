@@ -92,6 +92,7 @@
 @layer components {
   .section-pad {
     @apply px-6 md:px-12 lg:px-20 py-24 md:py-32;
+    contain: layout paint;
   }
 
   .mega-headline {
@@ -143,6 +144,8 @@
   .glass-card {
     @apply bg-card/50 backdrop-blur-xl border border-border/40 rounded-3xl;
     box-shadow: 0 1px 3px 0 hsl(244 90% 66% / 0.05), 0 12px 40px -10px hsl(235 50% 4% / 0.5);
+    contain: paint;
+    will-change: transform;
   }
 
   .gradient-orb {
@@ -191,6 +194,7 @@
     -webkit-text-fill-color: transparent;
     color: transparent;
     animation: gradient-shift 5s ease infinite;
+    will-change: background-position;
   }
   @keyframes gradient-shift {
     0%   { background-position: 0%; }
@@ -219,6 +223,7 @@
   /* Glowing left-border for skill rows */
   .glow-row {
     transition: box-shadow 0.35s ease, padding-left 0.35s ease;
+    will-change: box-shadow;
   }
   .glow-row:hover {
     box-shadow: inset 3px 0 0 hsl(var(--primary) / 0.75);

@@ -157,7 +157,7 @@ const ProjectCard = ({ p, index, total }: { p: Project; index: number; total: nu
   const top = `calc(8vh + ${index * 28}px)`;
 
   return (
-    <div ref={ref} className="lg:sticky lg:h-screen flex items-center" style={{ top }}>
+    <div ref={ref} className="lg:sticky lg:h-screen flex items-center" style={{ top, willChange: "transform" }}>
       <motion.article
         ref={articleRef}
         style={

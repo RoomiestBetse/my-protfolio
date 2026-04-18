@@ -16,7 +16,7 @@ const MarqueeStrip = () => (
   <section
     aria-label="Skills & Tools"
     className="relative border-y border-border/40 bg-background/60 py-10 md:py-14 overflow-hidden"
-    style={{ transform: "rotate(-2deg) scaleX(1.05)" }}
+    style={{ transform: "rotate(-2deg) scaleX(1.05)", contain: "layout paint", willChange: "transform" }}
   >
     <div className="overflow-hidden">
       <div

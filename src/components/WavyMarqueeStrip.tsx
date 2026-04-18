@@ -11,7 +11,7 @@ const STRIP = "hsl(235 40% 8%)";
 const WavyMarqueeStrip = () => (
   <div
     aria-label="Interests marquee"
-    style={{ transform: "rotate(-2deg) scaleX(1.06)" }}
+    style={{ transform: "rotate(-2deg) scaleX(1.06)", contain: "layout paint", willChange: "transform" }}
   >
     {/* Top wave */}
     <svg viewBox="0 0 1440 48" preserveAspectRatio="none"
