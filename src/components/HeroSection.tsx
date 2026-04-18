@@ -1,8 +1,42 @@
 import { motion, useScroll, useTransform, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
-import { useRef, MouseEvent } from "react";
+import { useRef, useEffect, useState, MouseEvent } from "react";
 import avatarImg from "@/assets/avatar.jpg";
 import { MagneticButton } from "@/components/animations/MagneticButton";
+
+const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#&*";
+
+// Scramble on mount (no IntersectionObserver needed — hero is always visible)
+const HeroScramble = ({ text, className, delay = 0 }: { text: string; className?: string; delay?: number }) => {
+  const reduce = useReducedMotion();
+  const [display, setDisplay] = useState(reduce ? text : "");
+
+  useEffect(() => {
+    if (reduce) return;
+    const timeout = setTimeout(() => {
+      let iteration = 0;
+      const totalFrames = text.length * 2.8;
+      const interval = setInterval(() => {
+        setDisplay(
+          text.split("").map((char, i) => {
+            if (char === " " || char === "." || char === "'" || char === ",") return char;
+            if (i < Math.floor(iteration / 2.8)) return char;
+            return CHARS[Math.floor(Math.random() * CHARS.length)];
+          }).join("")
+        );
+        iteration++;
+        if (iteration > totalFrames) {
+          clearInterval(interval);
+          setDisplay(text);
+        }
+      }, 32);
+      return () => clearInterval(interval);
+    }, delay * 1000);
+    return () => clearTimeout(timeout);
+  }, [text, delay, reduce]);
+
+  return <h1 className={className} aria-label={text}>{display}</h1>;
+};
 
 // Letter-by-letter animation using animate (not whileInView) so it fires on load
 const AnimatedHeading = ({
@@ -135,11 +169,10 @@ const HeroSection = () => {
               stagger={0.05}
               className="mega-headline text-foreground"
             />
-            {/* "BETSE." with extra punch — bigger blur wipe and glow flash */}
-            <AnimatedHeading
+            {/* "BETSE." — cryptic scramble on load */}
+            <HeroScramble
               text="BETSE."
-              delay={0.45}
-              stagger={0.06}
+              delay={0.35}
               className="mega-headline gradient-text-animated"
             />
             {/* Flash underline that draws across after the name lands */}
