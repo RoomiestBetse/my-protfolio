@@ -34,25 +34,25 @@ const WavyMarqueeStrip = () => {
   });
 
   return (
-    <div className="relative" aria-label="Interests marquee">
-      {/* Top wave — page BG colour cuts into strip */}
+    /* Rotate the whole band so left sits higher, right sits lower */
+    <div
+      aria-label="Interests marquee"
+      style={{ transform: "rotate(-2deg) scaleX(1.06)", margin: "0 0" }}
+    >
+      {/* Top edge — single wave dips down in the centre */}
       <svg
-        viewBox="0 0 1440 40"
+        viewBox="0 0 1440 48"
         preserveAspectRatio="none"
-        className="w-full block"
-        style={{ height: 40, display: "block", marginBottom: -1 }}
+        style={{ width: "100%", height: 48, display: "block", marginBottom: -1 }}
       >
         <path
-          d="M0,20 C120,40 240,0 360,20 C480,40 600,0 720,20 C840,40 960,0 1080,20 C1200,40 1320,0 1440,20 L1440,40 L0,40 Z"
+          d="M0,8 C360,8 480,42 720,42 C960,42 1080,8 1440,8 L1440,48 L0,48 Z"
           fill={BG}
         />
       </svg>
 
       {/* Strip body */}
-      <div
-        className="overflow-hidden py-8 md:py-12"
-        style={{ background: STRIP }}
-      >
+      <div className="overflow-hidden py-8 md:py-10" style={{ background: STRIP }}>
         <motion.div
           ref={containerRef}
           style={{ x }}
@@ -69,15 +69,14 @@ const WavyMarqueeStrip = () => {
         </motion.div>
       </div>
 
-      {/* Bottom wave */}
+      {/* Bottom edge — single wave rises up in the centre */}
       <svg
-        viewBox="0 0 1440 40"
+        viewBox="0 0 1440 48"
         preserveAspectRatio="none"
-        className="w-full block"
-        style={{ height: 40, display: "block", marginTop: -1 }}
+        style={{ width: "100%", height: 48, display: "block", marginTop: -1 }}
       >
         <path
-          d="M0,20 C120,0 240,40 360,20 C480,0 600,40 720,20 C840,0 960,40 1080,20 C1200,0 1320,40 1440,20 L1440,0 L0,0 Z"
+          d="M0,40 C360,40 480,6 720,6 C960,6 1080,40 1440,40 L1440,0 L0,0 Z"
           fill={BG}
         />
       </svg>
