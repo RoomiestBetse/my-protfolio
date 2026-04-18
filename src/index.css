@@ -60,8 +60,11 @@
     @apply border-border;
   }
 
-  html, body {
+  html {
     background: hsl(var(--background));
+  }
+  body {
+    background: transparent;
   }
 
   body {
