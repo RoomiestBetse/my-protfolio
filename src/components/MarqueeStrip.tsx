@@ -34,6 +34,7 @@ const MarqueeStrip = () => {
     <section
       aria-label="Skills & Tools"
       className="relative py-10 md:py-14 border-y border-border/40 bg-background/40 backdrop-blur-md overflow-hidden"
+      style={{ transform: "rotate(-2deg) scaleX(1.05)" }}
     >
       <motion.div ref={containerRef} style={{ x }} className="flex w-max items-center gap-12">
         {items.map((t, i) => (
