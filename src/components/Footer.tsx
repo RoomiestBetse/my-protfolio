@@ -5,7 +5,7 @@ const Footer = () => (
         Betse<span className="gradient-text">.</span>
       </p>
       <div className="flex gap-6 text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
-        <a href="mailto:betse.essilfie@example.com" className="hover:text-foreground transition-colors">Email</a>
+        <a href="mailto:betseessilfie@gmail.com" className="hover:text-foreground transition-colors">Email</a>
         <a href="#about" className="hover:text-foreground transition-colors">About</a>
         <a href="#projects" className="hover:text-foreground transition-colors">Projects</a>
       </div>
