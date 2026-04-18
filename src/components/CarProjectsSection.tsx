@@ -1,5 +1,5 @@
-import { useRef, useState } from "react";
-import { motion, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
+import { useRef, useState, MouseEvent } from "react";
+import { motion, useMotionValue, useSpring, useReducedMotion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import carProject from "@/assets/car-project.jpg";
@@ -40,14 +40,76 @@ const carCards = [
   },
 ];
 
+// Floating cursor preview
+const CursorPreview = ({
+  card,
+  x,
+  y,
+}: {
+  card: (typeof carCards)[number] | null;
+  x: any;
+  y: any;
+}) => (
+  <AnimatePresence>
+    {card && (
+      <motion.div
+        className="fixed top-0 left-0 z-50 pointer-events-none"
+        style={{ x, y }}
+        initial={{ opacity: 0, scale: 0.88 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.88 }}
+        transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <div className="w-64 rounded-2xl overflow-hidden border border-border/50 shadow-2xl"
+          style={{ background: "hsl(var(--card))", boxShadow: "0 20px 60px -10px hsl(265 85% 55% / 0.3)" }}
+        >
+          {/* Image peek */}
+          <div className="relative aspect-[16/9] overflow-hidden">
+            <img src={card.img} alt={card.title} className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-card via-card/10 to-transparent" />
+            <span
+              className="absolute top-3 left-3 font-display font-bold text-xl text-transparent"
+              style={{ WebkitTextStroke: "1px hsl(var(--primary))" }}
+            >
+              {card.n}
+            </span>
+          </div>
+
+          {/* Content */}
+          <div className="p-4 space-y-2">
+            <h4 className="font-display font-bold text-base uppercase tracking-tight gradient-text">
+              {card.modalTitle}
+            </h4>
+            <ul className="space-y-1">
+              {card.bullets.slice(0, 2).map((b) => (
+                <li key={b} className="flex items-start gap-1.5 text-xs text-foreground/70">
+                  <span className="text-primary shrink-0">*</span>
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="text-[10px] text-muted-foreground/60 italic pt-1 border-t border-border/30">
+              Click to see more
+            </p>
+          </div>
+        </div>
+      </motion.div>
+    )}
+  </AnimatePresence>
+);
+
 const TiltCard = ({
   i,
   c,
   onClick,
+  onHover,
+  onLeave,
 }: {
   i: number;
   c: (typeof carCards)[number];
   onClick: () => void;
+  onHover: () => void;
+  onLeave: () => void;
 }) => {
   const ref = useRef<HTMLButtonElement>(null);
   const reduce = useReducedMotion();
@@ -56,7 +118,7 @@ const TiltCard = ({
   const springX = useSpring(rotateX, { stiffness: 180, damping: 22 });
   const springY = useSpring(rotateY, { stiffness: 180, damping: 22 });
 
-  const handleMouseMove = (e: React.MouseEvent) => {
+  const handleMouseMove = (e: MouseEvent) => {
     if (reduce || !ref.current) return;
     const rect = ref.current.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width;
@@ -68,6 +130,7 @@ const TiltCard = ({
   const handleMouseLeave = () => {
     rotateX.set(0);
     rotateY.set(0);
+    onLeave();
   };
 
   return (
@@ -77,12 +140,9 @@ const TiltCard = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.7, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-      style={
-        reduce
-          ? undefined
-          : { rotateX: springX, rotateY: springY, transformPerspective: 1000 }
-      }
+      style={reduce ? undefined : { rotateX: springX, rotateY: springY, transformPerspective: 1000 }}
       onMouseMove={handleMouseMove}
+      onMouseEnter={onHover}
       onMouseLeave={handleMouseLeave}
       onClick={onClick}
       className="group text-left glass-card overflow-hidden"
@@ -95,7 +155,6 @@ const TiltCard = ({
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
-        {/* "View Details" overlay */}
         <div className="absolute inset-0 flex items-end justify-center pb-8 opacity-0 group-hover:opacity-100 transition-opacity duration-400">
           <span className="flex items-center gap-2 text-foreground font-semibold uppercase tracking-wider text-xs bg-background/60 backdrop-blur-md px-4 py-2 rounded-full border border-border/50">
             View Details <ArrowUpRight size={13} />
@@ -118,9 +177,34 @@ const TiltCard = ({
 
 const CarProjectsSection = () => {
   const [active, setActive] = useState<number | null>(null);
+  const [hovered, setHovered] = useState<number | null>(null);
+  const reduce = useReducedMotion();
+
+  const rawX = useMotionValue(-9999);
+  const rawY = useMotionValue(-9999);
+  const cursorX = useSpring(rawX, { stiffness: 220, damping: 28 });
+  const cursorY = useSpring(rawY, { stiffness: 220, damping: 28 });
+
+  const handleSectionMouseMove = (e: MouseEvent<HTMLElement>) => {
+    rawX.set(e.clientX + 24);
+    rawY.set(e.clientY + 24);
+  };
 
   return (
-    <section id="cars" className="relative section-pad">
+    <section
+      id="cars"
+      className="relative section-pad"
+      onMouseMove={handleSectionMouseMove}
+    >
+      {/* Cursor-following preview — only on non-reduced-motion */}
+      {!reduce && (
+        <CursorPreview
+          card={hovered !== null ? carCards[hovered] : null}
+          x={cursorX}
+          y={cursorY}
+        />
+      )}
+
       <div className="max-w-7xl mx-auto">
         <Reveal>
           <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-muted-foreground mb-6">
@@ -131,7 +215,14 @@ const CarProjectsSection = () => {
 
         <div className="grid md:grid-cols-2 gap-6">
           {carCards.map((c, i) => (
-            <TiltCard key={c.title} i={i} c={c} onClick={() => setActive(i)} />
+            <TiltCard
+              key={c.title}
+              i={i}
+              c={c}
+              onClick={() => setActive(i)}
+              onHover={() => setHovered(i)}
+              onLeave={() => setHovered(null)}
+            />
           ))}
         </div>
       </div>
