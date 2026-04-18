@@ -10,6 +10,7 @@ const AboutSection = lazy(() => import("@/components/AboutSection"));
 const SkillsSection = lazy(() => import("@/components/SkillsSection"));
 const StackedProjects = lazy(() => import("@/components/StackedProjects"));
 const CarProjectsSection = lazy(() => import("@/components/CarProjectsSection"));
+const WavyMarqueeStrip = lazy(() => import("@/components/WavyMarqueeStrip"));
 const StatsSection = lazy(() => import("@/components/StatsSection"));
 const ContactSection = lazy(() => import("@/components/ContactSection"));
 const Footer = lazy(() => import("@/components/Footer"));
@@ -51,6 +52,7 @@ const Index = () => {
           <AboutSection />
           <SkillsSection />
           <StackedProjects />
+          <WavyMarqueeStrip />
           <CarProjectsSection />
           <StatsSection />
           <ContactSection />
