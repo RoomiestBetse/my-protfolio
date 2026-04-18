@@ -1,7 +1,8 @@
 import { useRef, useState, MouseEvent } from "react";
 import { motion, useMotionValue, useSpring, useReducedMotion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import carProject from "@/assets/car-project.jpg";
 import carExterior from "@/assets/car-exterior.jpg";
 import { ScrambleText } from "@/components/animations/ScrambleText";
@@ -228,40 +229,89 @@ const CarProjectsSection = () => {
       </div>
 
       <Dialog open={active !== null} onOpenChange={() => setActive(null)}>
-        <DialogContent className="glass-card border-border/50 bg-background/90 backdrop-blur-xl max-w-lg">
+        <DialogContent
+          className="max-w-lg border-0 p-0 overflow-hidden rounded-3xl"
+          style={{
+            background: "hsl(var(--card))",
+            boxShadow: "0 0 0 1px hsl(var(--border) / 0.5), 0 25px 80px -10px hsl(265 85% 55% / 0.4)",
+          }}
+        >
           {active !== null && (
-            <>
-              <div className="relative rounded-xl overflow-hidden aspect-[16/9] -mx-2 -mt-2 mb-2">
+            <motion.div
+              key={active}
+              aria-label={carCards[active].modalTitle}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.25 }}
+            >
+              <VisuallyHidden><DialogTitle>{carCards[active].modalTitle}</DialogTitle></VisuallyHidden>
+              {/* Hero image */}
+              <div className="relative overflow-hidden aspect-[16/9]">
                 <img
                   src={carCards[active].img}
                   alt={carCards[active].modalTitle}
                   className="w-full h-full object-cover"
                 />
+                {/* Gradient overlay so text on top reads cleanly */}
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
+                {/* Number watermark */}
+                <span
+                  className="absolute top-4 left-5 font-display font-bold text-4xl text-transparent"
+                  style={{ WebkitTextStroke: "1.5px hsl(var(--primary))" }}
+                >
+                  {carCards[active].n}
+                </span>
               </div>
-              <DialogHeader>
-                <DialogTitle className="font-display text-2xl uppercase">
+
+              {/* Content */}
+              <div className="p-6 space-y-4">
+                {/* Glowing title */}
+                <motion.h3
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                  className="font-display text-2xl font-bold uppercase gradient-text"
+                >
                   {carCards[active].modalTitle}
-                </DialogTitle>
-                <DialogDescription asChild>
-                  <div className="pt-2 space-y-4">
-                    <p className="text-muted-foreground leading-relaxed">
-                      {carCards[active].modalDesc}
-                    </p>
-                    <ul className="space-y-1.5">
-                      {carCards[active].bullets.map((b) => (
-                        <li key={b} className="flex items-start gap-2 text-sm text-foreground/80">
-                          <span className="text-primary mt-0.5">*</span>
-                          <span>{b}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <p className="text-xs text-muted-foreground/70 italic border-t border-border/40 pt-3">
-                      {carCards[active].why}
-                    </p>
-                  </div>
-                </DialogDescription>
-              </DialogHeader>
-            </>
+                </motion.h3>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.15, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                  className="text-muted-foreground leading-relaxed text-sm"
+                >
+                  {carCards[active].modalDesc}
+                </motion.p>
+
+                {/* Animated bullet list */}
+                <ul className="space-y-2">
+                  {carCards[active].bullets.map((b, i) => (
+                    <motion.li
+                      key={b}
+                      initial={{ opacity: 0, x: -12 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.2 + i * 0.07, duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                      className="flex items-start gap-2 text-sm text-foreground/80"
+                    >
+                      <span className="text-primary mt-0.5 font-bold">*</span>
+                      <span>{b}</span>
+                    </motion.li>
+                  ))}
+                </ul>
+
+                {/* Why line with top glow divider */}
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.5, duration: 0.4 }}
+                  className="text-xs text-muted-foreground/60 italic pt-3"
+                  style={{ borderTop: "1px solid hsl(var(--primary) / 0.2)" }}
+                >
+                  {carCards[active].why}
+                </motion.p>
+              </div>
+            </motion.div>
           )}
         </DialogContent>
       </Dialog>
