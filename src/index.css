@@ -62,11 +62,11 @@
 
   html {
     background: hsl(var(--background));
-    overflow-x: hidden;
+    overflow-x: clip;
   }
   body {
     background: transparent;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   body {

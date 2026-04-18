@@ -13,9 +13,20 @@ const AppDemoVideo = () => {
     if (!v) return;
     v.muted = true;
     const play = () => { v.muted = true; v.play().catch(() => {}); };
+    // Try immediately and on canplay
     play();
     v.addEventListener("canplay", play, { once: true });
-    return () => v.removeEventListener("canplay", play);
+    // Fallback: play on first user interaction anywhere on the page
+    const onInteract = () => play();
+    document.addEventListener("scroll", onInteract, { once: true, passive: true });
+    document.addEventListener("click", onInteract, { once: true });
+    document.addEventListener("pointerdown", onInteract, { once: true });
+    return () => {
+      v.removeEventListener("canplay", play);
+      document.removeEventListener("scroll", onInteract);
+      document.removeEventListener("click", onInteract);
+      document.removeEventListener("pointerdown", onInteract);
+    };
   }, []);
   return (
     <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-fuchsia-500/30 via-indigo-500/20 to-violet-500/30 flex items-center justify-center">
@@ -29,7 +40,6 @@ const AppDemoVideo = () => {
           playsInline
           preload="auto"
           className="w-full h-full object-cover"
-          onCanPlay={(e) => { const v = e.currentTarget; v.muted = true; v.play().catch(() => {}); }}
         />
       </div>
     </div>
