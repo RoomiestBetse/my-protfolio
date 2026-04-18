@@ -40,56 +40,68 @@ const Index = () => {
   }, [reduce, rawX, rawY]);
 
   return (
-    <div className="relative min-h-screen bg-background">
+    <div className="relative min-h-screen">
       {/* Scroll progress bar */}
       <motion.div
         style={{ scaleX: progress }}
         className="fixed top-0 left-0 right-0 h-[2px] origin-left z-[60] bg-gradient-to-r from-indigo-500 via-violet-500 to-fuchsia-500"
       />
 
-      {/* Background image */}
+      {/* Layer 1 — solid dark base (deepest) */}
+      <div aria-hidden className="fixed inset-0 pointer-events-none" style={{ zIndex: -40, background: "hsl(var(--background))" }} />
+
+      {/* Layer 2 — background image */}
       <div
         aria-hidden
-        className="fixed inset-0 -z-10 opacity-[0.28]"
+        className="fixed inset-0 pointer-events-none opacity-50"
         style={{
+          zIndex: -30,
           backgroundImage: "url('/images/bg.jpeg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           filter: "blur(2px)",
         }}
       />
-      <div aria-hidden className="fixed inset-0 -z-10 bg-gradient-to-b from-background/60 via-background/80 to-background/95" />
 
-      {/* Cursor-following aurora */}
+      {/* Layer 3 — subtle vignette so text stays readable */}
+      <div
+        aria-hidden
+        className="fixed inset-0 pointer-events-none"
+        style={{ zIndex: -20, background: "linear-gradient(to bottom, hsl(var(--background)/0.35) 0%, hsl(var(--background)/0.55) 50%, hsl(var(--background)/0.75) 100%)" }}
+      />
+
+      {/* Layer 4 — cursor-following aurora (above vignette, below content) */}
       {!reduce && (
         <>
           <motion.div
             aria-hidden
-            className="fixed -z-10 pointer-events-none"
+            className="fixed pointer-events-none"
             style={{
+              zIndex: -10,
               x: auroraX,
               y: auroraY,
               translateX: "-50%",
               translateY: "-50%",
-              width: 700,
-              height: 700,
+              width: 800,
+              height: 800,
               borderRadius: "50%",
-              background: "radial-gradient(circle, hsl(265 85% 55% / 0.13) 0%, transparent 70%)",
+              background: "radial-gradient(circle, hsl(265 85% 60% / 0.28) 0%, transparent 65%)",
               willChange: "transform",
             }}
           />
           <motion.div
             aria-hidden
-            className="fixed -z-10 pointer-events-none"
+            className="fixed pointer-events-none"
             style={{
+              zIndex: -10,
               x: aurora2X,
               y: aurora2Y,
               translateX: "-50%",
               translateY: "-50%",
-              width: 500,
-              height: 500,
+              width: 600,
+              height: 600,
               borderRadius: "50%",
-              background: "radial-gradient(circle, hsl(220 90% 60% / 0.10) 0%, transparent 70%)",
+              background: "radial-gradient(circle, hsl(220 90% 65% / 0.20) 0%, transparent 65%)",
               willChange: "transform",
             }}
           />
