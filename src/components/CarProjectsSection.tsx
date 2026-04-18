@@ -12,17 +12,31 @@ const carCards = [
     n: "01",
     img: carExterior,
     title: "BMW M3",
-    desc: "My beloved... what I spend all my time on...",
+    desc: "I handle all the maintenance and aero work on this one. It's a lesson in precision and keeping a high-performance machine running right.",
     modalTitle: "2011 BMW M3",
-    modalContent: "Aero refinement, aesthetic precision, and high-standard finish quality.",
+    modalDesc: "I handle all the maintenance and aero work on this one. It's a lesson in precision and keeping a high-performance machine running right. I spend a lot of time in the garage, but the results are worth it.",
+    bullets: [
+      "Aero kit installation and fitment",
+      "Interior trim restoration",
+      "Routine high-mileage engine maintenance",
+      "Sourcing specific OEM+ parts",
+    ],
+    why: "I like taking things apart to see how they work and making them better than I found them.",
   },
   {
     n: "02",
     img: carProject,
     title: "Subaru STI",
-    desc: "the daily. 😔",
+    desc: "This is my daily and my main troubleshooting project. I've focused on rebuilding it for reliability and engine output.",
     modalTitle: "2011 Subaru STI",
-    modalContent: "Performance build with focus on reliability, troubleshooting, and engine output.",
+    modalDesc: "This is my daily and my main troubleshooting project. I've focused on rebuilding it for reliability and engine output. It's taught me a lot about diagnosing mechanical issues under pressure.",
+    bullets: [
+      "Engine output tuning for daily use",
+      "Troubleshooting boost leaks and sensors",
+      "Suspension refresh for reliability",
+      "Mechanical diagnostics and repairs",
+    ],
+    why: "It's my way of practicing problem-solving on something that has to work every single morning.",
   },
 ];
 
@@ -137,8 +151,23 @@ const CarProjectsSection = () => {
                 <DialogTitle className="font-display text-2xl uppercase">
                   {carCards[active].modalTitle}
                 </DialogTitle>
-                <DialogDescription className="text-muted-foreground leading-relaxed pt-2">
-                  {carCards[active].modalContent}
+                <DialogDescription asChild>
+                  <div className="pt-2 space-y-4">
+                    <p className="text-muted-foreground leading-relaxed">
+                      {carCards[active].modalDesc}
+                    </p>
+                    <ul className="space-y-1.5">
+                      {carCards[active].bullets.map((b) => (
+                        <li key={b} className="flex items-start gap-2 text-sm text-foreground/80">
+                          <span className="text-primary mt-0.5">*</span>
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <p className="text-xs text-muted-foreground/70 italic border-t border-border/40 pt-3">
+                      {carCards[active].why}
+                    </p>
+                  </div>
                 </DialogDescription>
               </DialogHeader>
             </>
