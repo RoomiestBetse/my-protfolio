@@ -11,8 +11,24 @@ const AppDemoVideo = () => {
   useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
+    // Programmatically set muted (React prop doesn't always apply to DOM)
     v.muted = true;
-    v.play().catch(() => {});
+    v.loop = true;
+    const tryPlay = () => { v.muted = true; v.play().catch(() => {}); };
+    v.addEventListener("canplay", tryPlay, { once: true });
+    v.addEventListener("loadedmetadata", tryPlay, { once: true });
+    // Also play when scrolled into view
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) tryPlay(); },
+      { threshold: 0.1 }
+    );
+    observer.observe(v);
+    tryPlay();
+    return () => {
+      v.removeEventListener("canplay", tryPlay);
+      v.removeEventListener("loadedmetadata", tryPlay);
+      observer.disconnect();
+    };
   }, []);
   return (
     <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-fuchsia-500/30 via-indigo-500/20 to-violet-500/30 flex items-center justify-center">
@@ -20,7 +36,6 @@ const AppDemoVideo = () => {
         <video
           ref={videoRef}
           src="/app-demo.mov"
-          poster="/placeholder.svg"
           autoPlay
           loop
           muted
