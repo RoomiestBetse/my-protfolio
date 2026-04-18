@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 230 50% 5%;
+    --foreground: 220 20% 96%;
+
+    --card: 235 40% 10%;
+    --card-foreground: 220 20% 96%;
+
+    --popover: 235 40% 10%;
+    --popover-foreground: 220 20% 96%;
+
+    --primary: 244 90% 66%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 235 30% 14%;
+    --secondary-foreground: 220 20% 92%;
+
+    --muted: 235 25% 12%;
+    --muted-foreground: 230 15% 60%;
+
+    --accent: 280 90% 65%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 235 25% 18%;
+    --input: 235 25% 18%;
+    --ring: 244 90% 66%;
+
+    --radius: 0.75rem;
+
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+
+    /* Signature gradient */
+    --gradient-brand: linear-gradient(135deg, hsl(244 90% 66%), hsl(280 85% 62%) 50%, hsl(320 85% 62%));
+    --gradient-soft: linear-gradient(135deg, hsl(244 90% 66% / 0.18), hsl(320 85% 62% / 0.18));
+    --shadow-glow: 0 20px 60px -15px hsl(265 85% 55% / 0.5);
+
+    --sidebar-background: 235 40% 8%;
+    --sidebar-foreground: 220 20% 90%;
+    --sidebar-primary: 244 90% 66%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 235 30% 14%;
+    --sidebar-accent-foreground: 220 20% 90%;
+    --sidebar-border: 235 25% 18%;
+    --sidebar-ring: 244 90% 66%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html, body {
+    background: hsl(var(--background));
+  }
+
+  body {
+    @apply text-foreground font-body antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  /* Free-flowing scroll, no snap */
+  html {
+    scroll-behavior: auto;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.4);
+    color: hsl(var(--foreground));
+  }
+}
+
+@layer components {
+  .section-pad {
+    @apply px-6 md:px-12 lg:px-20 py-24 md:py-32;
+  }
+
+  .mega-headline {
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.04em;
+    line-height: 0.92;
+    font-size: clamp(2.75rem, 9vw, 8rem);
+  }
+
+  .display-headline {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    font-size: clamp(2rem, 5vw, 3.75rem);
+  }
+
+  .gradient-text {
+    background: var(--gradient-brand);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .gradient-pill {
+    background: var(--gradient-brand);
+    color: hsl(var(--primary-foreground));
+    @apply inline-flex items-center justify-center font-semibold rounded-full px-7 py-3.5 text-sm tracking-wide uppercase;
+    box-shadow: 0 10px 30px -10px hsl(265 85% 55% / 0.55);
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s;
+  }
+  .gradient-pill:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 18px 45px -10px hsl(265 85% 55% / 0.7);
+  }
+
+  .outline-pill {
+    @apply inline-flex items-center justify-center font-semibold rounded-full px-7 py-3.5 text-sm tracking-wide uppercase border border-border/60 text-foreground;
+    transition: all 0.3s;
+  }
+  .outline-pill:hover {
+    border-color: hsl(var(--primary) / 0.5);
+    background: hsl(var(--primary) / 0.06);
+  }
+
+  .glass-card {
+    @apply bg-card/50 backdrop-blur-xl border border-border/40 rounded-3xl;
+    box-shadow: 0 1px 3px 0 hsl(244 90% 66% / 0.05), 0 12px 40px -10px hsl(235 50% 4% / 0.5);
+  }
+
+  .gradient-orb {
+    background: var(--gradient-brand);
+    filter: blur(80px);
+    opacity: 0.35;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .hairline {
+    @apply border-t border-border/40;
+  }
+}
+
+@layer utilities {
+  .marquee {
+    animation: marquee 40s linear infinite;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .float-y {
+    animation: floatY 6s ease-in-out infinite;
+  }
+  @keyframes floatY {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+  }
+
+  /* Animated gradient headline */
+  .gradient-text-animated {
+    background: linear-gradient(
+      135deg,
+      hsl(244 90% 70%),
+      hsl(280 85% 65%) 33%,
+      hsl(320 85% 65%) 66%,
+      hsl(244 90% 70%)
+    );
+    background-size: 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: gradient-shift 5s ease infinite;
+  }
+  @keyframes gradient-shift {
+    0%   { background-position: 0%; }
+    50%  { background-position: 100%; }
+    100% { background-position: 0%; }
+  }
+
+  /* Radar ping for available badge */
+  @keyframes radar-ring {
+    0%   { transform: scale(1); opacity: 0.75; }
+    100% { transform: scale(3.5); opacity: 0; }
+  }
+
+  /* Grain overlay */
+  .grain-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.038;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 200px;
+  }
+
+  /* Glowing left-border for skill rows */
+  .glow-row {
+    transition: box-shadow 0.35s ease, padding-left 0.35s ease;
+  }
+  .glow-row:hover {
+    box-shadow: inset 3px 0 0 hsl(var(--primary) / 0.75);
+    padding-left: 8px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee, .float-y, .gradient-text-animated { animation: none; }
+  }
+}
