@@ -54,7 +54,7 @@ const CursorPreview = ({
   <AnimatePresence>
     {card && (
       <motion.div
-        className="fixed top-0 left-0 z-50 pointer-events-none"
+        className="fixed top-0 left-0 z-[200] pointer-events-none"
         style={{ x, y }}
         initial={{ opacity: 0, scale: 0.88 }}
         animate={{ opacity: 1, scale: 1 }}
