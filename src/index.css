@@ -62,9 +62,11 @@
 
   html {
     background: hsl(var(--background));
+    overflow-x: hidden;
   }
   body {
     background: transparent;
+    overflow-x: hidden;
   }
 
   body {
