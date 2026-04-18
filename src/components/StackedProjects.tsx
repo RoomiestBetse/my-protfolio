@@ -128,12 +128,12 @@ const ProjectCard = ({ p, index, total }: { p: Project; index: number; total: nu
         ref={articleRef}
         style={
           reduce
-            ? { backgroundColor: "hsl(var(--card))" }
-            : { scale, opacity, rotateX: springX, rotateY: springY, transformPerspective: 1200, backgroundColor: "hsl(var(--card))" }
+            ? { backgroundColor: "hsl(var(--card))", backdropFilter: "none" }
+            : { scale, opacity, rotateX: springX, rotateY: springY, transformPerspective: 1200, backgroundColor: "hsl(var(--card))", backdropFilter: "none" }
         }
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="w-full glass-card p-6 md:p-10 lg:p-12 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center"
+        className="w-full border border-border/40 rounded-3xl p-6 md:p-10 lg:p-12 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center"
       >
         <div>
           <div className="flex items-center gap-4 mb-6">
@@ -171,9 +171,10 @@ const ProjectCard = ({ p, index, total }: { p: Project; index: number; total: nu
             href={p.link ?? "#contact"}
             target={p.link ? "_blank" : undefined}
             rel={p.link ? "noopener noreferrer" : undefined}
-            className="outline-pill"
+            className={p.link ? "gradient-pill inline-flex items-center gap-2" : "outline-pill"}
           >
             {p.linkLabel ?? "Live Project →"}
+            {p.link && <ArrowUpRight size={15} />}
           </a>
         </div>
 
