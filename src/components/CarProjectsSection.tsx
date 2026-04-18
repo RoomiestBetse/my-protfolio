@@ -1,4 +1,5 @@
 import { useRef, useState, MouseEvent } from "react";
+import { createPortal } from "react-dom";
 import { motion, useMotionValue, useSpring, useReducedMotion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
@@ -197,13 +198,14 @@ const CarProjectsSection = () => {
       className="relative section-pad"
       onMouseMove={handleSectionMouseMove}
     >
-      {/* Cursor-following preview — only on non-reduced-motion */}
-      {!reduce && (
+      {/* Cursor-following preview — portaled to body to escape section stacking context */}
+      {!reduce && createPortal(
         <CursorPreview
           card={hovered !== null ? carCards[hovered] : null}
           x={cursorX}
           y={cursorY}
-        />
+        />,
+        document.body
       )}
 
       <div className="max-w-7xl mx-auto">
