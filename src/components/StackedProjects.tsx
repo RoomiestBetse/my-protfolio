@@ -15,6 +15,8 @@ interface Project {
   tools: string[];
   icon: typeof Truck;
   media: ReactNode;
+  link?: string;
+  linkLabel?: string;
 }
 
 const projects: Project[] = [
@@ -76,6 +78,8 @@ const projects: Project[] = [
     ],
     tools: ["Mobile App", "Product Design", "Marketplace"],
     icon: Smartphone,
+    link: "https://car-repaipal-real.vercel.app/",
+    linkLabel: "View App",
     media: (
       <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-fuchsia-500/30 via-indigo-500/20 to-violet-500/30 flex items-center justify-center">
         <div className="relative w-[180px] aspect-[9/16] rounded-[1.5rem] overflow-hidden border-4 border-foreground/10 shadow-2xl">
@@ -124,12 +128,12 @@ const ProjectCard = ({ p, index, total }: { p: Project; index: number; total: nu
         ref={articleRef}
         style={
           reduce
-            ? undefined
-            : { scale, opacity, rotateX: springX, rotateY: springY, transformPerspective: 1200 }
+            ? { backgroundColor: "hsl(var(--card))" }
+            : { scale, opacity, rotateX: springX, rotateY: springY, transformPerspective: 1200, backgroundColor: "hsl(var(--card))" }
         }
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="w-full glass-card !bg-card p-6 md:p-10 lg:p-12 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center"
+        className="w-full glass-card p-6 md:p-10 lg:p-12 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center"
       >
         <div>
           <div className="flex items-center gap-4 mb-6">
@@ -163,8 +167,13 @@ const ProjectCard = ({ p, index, total }: { p: Project; index: number; total: nu
             ))}
           </div>
 
-          <a href="#contact" className="outline-pill">
-            Live Project →
+          <a
+            href={p.link ?? "#contact"}
+            target={p.link ? "_blank" : undefined}
+            rel={p.link ? "noopener noreferrer" : undefined}
+            className="outline-pill"
+          >
+            {p.linkLabel ?? "Live Project →"}
           </a>
         </div>
 
