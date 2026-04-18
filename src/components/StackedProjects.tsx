@@ -129,7 +129,7 @@ const ProjectCard = ({ p, index, total }: { p: Project; index: number; total: nu
         }
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="w-full glass-card !bg-card/95 p-6 md:p-10 lg:p-12 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center"
+        className="w-full glass-card !bg-card p-6 md:p-10 lg:p-12 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center"
       >
         <div>
           <div className="flex items-center gap-4 mb-6">
