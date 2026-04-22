@@ -224,10 +224,10 @@ const StackedProjects = () => {
       <div className="max-w-7xl mx-auto">
         <Reveal>
           <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-muted-foreground mb-6">
-            ( Selected Work )
+            ( Work Experience & Projects )
           </p>
         </Reveal>
-        <ScrambleText as="h2" text="PROJECTS" className="mega-headline mb-16 gradient-text" />
+        <ScrambleText as="h2" text="EXPERIENCE" className="mega-headline mb-16 gradient-text" />
 
         <div className="space-y-12 lg:space-y-0">
           {projects.map((p, i) => (
