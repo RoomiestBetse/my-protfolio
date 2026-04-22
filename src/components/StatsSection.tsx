@@ -5,7 +5,7 @@ import { Reveal } from "@/components/animations/Reveal";
 
 const stats = [
   { value: 5, suffix: "+", label: "Years in auto parts & ops" },
-  { value: 10, suffix: "k+", label: "Parts & orders handled" },
+  { value: 15, suffix: "k+", label: "Parts & orders handled" },
   { value: 2, suffix: "", label: "Major employers" },
   { value: 2027, suffix: "", label: "NAIT Grad Year" },
 ];
