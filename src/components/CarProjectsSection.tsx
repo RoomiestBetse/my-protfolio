@@ -211,7 +211,7 @@ const CarProjectsSection = () => {
       <div className="max-w-7xl mx-auto">
         <Reveal>
           <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-muted-foreground mb-6">
-            ( On The Side )
+            ( Hobbies )
           </p>
         </Reveal>
         <ScrambleText as="h2" text="CARS." className="mega-headline mb-16" />
