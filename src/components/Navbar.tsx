@@ -5,7 +5,7 @@ import { MagneticButton } from "@/components/animations/MagneticButton";
 
 const links = [
   { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
+  { label: "Experience", href: "#projects" },
   { label: "Cars", href: "#cars" },
   { label: "Contact", href: "#contact" },
 ];

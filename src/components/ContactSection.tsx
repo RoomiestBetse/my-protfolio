@@ -128,7 +128,7 @@ const ContactSection = () => {
             </a>
             <div className="flex items-center gap-3 text-muted-foreground">
               <MapPin size={18} className="text-primary" />
-              <span className="text-base md:text-lg">Edmonton, Alberta, Canada &nbsp;| &nbsp; 587-986-3055</span>
+              <span className="text-base md:text-lg">Edmonton, Alberta, Canada &nbsp;| &nbsp; <a href="tel:+15879863055" className="hover:text-primary transition-colors">587-986-3055</a></span>
             </div>
           </Reveal>
         </div>

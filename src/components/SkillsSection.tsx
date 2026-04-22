@@ -35,7 +35,7 @@ const SkillsSection = () => {
             ( What I Do )
           </p>
         </Reveal>
-        <ScrambleText as="h2" text="SERVICES" className="mega-headline mb-16 gradient-text" />
+        <ScrambleText as="h2" text="SKILLS" className="mega-headline mb-16 gradient-text" />
 
         <div>
           <div className="hairline" />

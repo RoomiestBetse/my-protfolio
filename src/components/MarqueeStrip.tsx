@@ -7,7 +7,9 @@ const tags = [
   "Logistics",
   "Inventory Systems",
   "Financial Reporting",
+  "QuickBooks",
   "Data Entry",
+  "Google Workspace",
   "Problem Solving",
   "Customer Service",
 ];

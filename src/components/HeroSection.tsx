@@ -193,8 +193,7 @@ const HeroSection = () => {
             transition={{ delay: 0.9, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="text-base md:text-lg text-muted-foreground max-w-md leading-relaxed"
           >
-            NAIT Accounting co-op student and operations specialist. I keep businesses organized
-            and their numbers on track.
+            NAIT Accounting student and operations specialist — open to full-time, part-time, and co-op roles.
           </motion.p>
 
           <motion.div
