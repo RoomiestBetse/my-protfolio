@@ -49,6 +49,7 @@ const AppDemoVideo = () => {
 interface Project {
   n: string;
   client: string;
+  date?: string;
   title: string;
   tagline: string;
   bullets: string[];
@@ -62,7 +63,8 @@ interface Project {
 const projects: Project[] = [
   {
     n: "01",
-    client: "LORDCO AUTO PARTS  ·  SEPT 2023 – PRESENT",
+    client: "LORDCO AUTO PARTS",
+    date: "Sept 2023 – Present",
     title: "Delivery & Operations",
     tagline: "High-volume routes, tight coordination, real-time decisions.",
     bullets: [
@@ -85,7 +87,8 @@ const projects: Project[] = [
   },
   {
     n: "02",
-    client: "NAPA AUTO PARTS  ·  FEB 2021 – DEC 2023",
+    client: "NAPA AUTO PARTS",
+    date: "Feb 2021 – Dec 2023",
     title: "Inventory & Logistics",
     tagline: "Precise parts handling, time-sensitive orders, zero excuses.",
     bullets: [
@@ -174,8 +177,15 @@ const ProjectCard = ({ p, index, total }: { p: Project; index: number; total: nu
             <span className="font-display font-bold text-5xl md:text-6xl text-transparent" style={{ WebkitTextStroke: "1.5px hsl(var(--primary))" }}>
               {p.n}
             </span>
-            <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
-              {p.client}
+            <div>
+              <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+                {p.client}
+              </div>
+              {p.date && (
+                <div className="text-[10px] font-medium tracking-wide text-primary/70 mt-0.5">
+                  {p.date}
+                </div>
+              )}
             </div>
           </div>
 
@@ -195,9 +205,16 @@ const ProjectCard = ({ p, index, total }: { p: Project; index: number; total: nu
 
           <div className="flex flex-wrap gap-2 mb-8">
             {p.tools.map((t) => (
-              <span key={t} className="text-[10px] font-semibold uppercase tracking-wider px-3 py-1.5 rounded-full border border-border/60 text-muted-foreground">
-                {t}
-              </span>
+              t === "Coming Soon" ? (
+                <span key={t} className="text-[10px] font-semibold uppercase tracking-wider px-3 py-1.5 rounded-full border border-primary/50 text-primary bg-primary/10 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                  {t}
+                </span>
+              ) : (
+                <span key={t} className="text-[10px] font-semibold uppercase tracking-wider px-3 py-1.5 rounded-full border border-border/60 text-muted-foreground">
+                  {t}
+                </span>
+              )
             ))}
           </div>
 

@@ -106,6 +106,15 @@ const HeroSection = () => {
 
   return (
     <section id="hero" ref={ref} className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-28 pb-16 px-6 md:px-12 lg:px-20">
+      {/* Dot grid */}
+      <svg className="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg" style={{ opacity: 0.045 }}>
+        <defs>
+          <pattern id="dot-grid" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+            <circle cx="1.5" cy="1.5" r="1.5" fill="currentColor" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#dot-grid)" />
+      </svg>
       {/* Gradient orbs */}
       <div className="absolute -top-32 -left-40 w-[480px] h-[480px] gradient-orb opacity-40" />
       <div className="absolute -bottom-40 -right-32 w-[520px] h-[520px] gradient-orb opacity-30" />
