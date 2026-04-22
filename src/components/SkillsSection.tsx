@@ -28,11 +28,11 @@ const services = [
 const SkillsSection = () => {
   const reduce = useReducedMotion();
   return (
-    <section id="services" className="relative section-pad">
+    <section id="skills" className="relative section-pad">
       <div className="max-w-7xl mx-auto">
         <Reveal>
           <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-muted-foreground mb-6">
-            ( What I Do )
+            ( What I Bring )
           </p>
         </Reveal>
         <ScrambleText as="h2" text="SKILLS" className="mega-headline mb-16 gradient-text" />

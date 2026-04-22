@@ -8,6 +8,7 @@ const Footer = () => (
         <a href="mailto:betseessilfie@gmail.com" className="hover:text-foreground transition-colors">Email</a>
         <a href="#about" className="hover:text-foreground transition-colors">About</a>
         <a href="#projects" className="hover:text-foreground transition-colors">Experience</a>
+        <a href="/resume.pdf" download className="hover:text-foreground transition-colors">Resume</a>
       </div>
       <p className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
         © {new Date().getFullYear()} Betse Essilfie
