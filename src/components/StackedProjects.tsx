@@ -62,7 +62,7 @@ interface Project {
 const projects: Project[] = [
   {
     n: "01",
-    client: " LORDCO AUTO PARTS",
+    client: "LORDCO AUTO PARTS  ·  SEPT 2023 – PRESENT",
     title: "Delivery & Operations",
     tagline: "High-volume routes, tight coordination, real-time decisions.",
     bullets: [
@@ -85,7 +85,7 @@ const projects: Project[] = [
   },
   {
     n: "02",
-    client: "NAPA AUTO PARTS",
+    client: "NAPA AUTO PARTS  ·  FEB 2021 – DEC 2023",
     title: "Inventory & Logistics",
     tagline: "Precise parts handling, time-sensitive orders, zero excuses.",
     bullets: [
@@ -114,9 +114,9 @@ const projects: Project[] = [
     bullets: [
       "Designed and built the full app experience",
       "Quote system with shop comparison",
-      "Currently in development, prepping for launch",
+      "Coming soon — actively building toward launch",
     ],
-    tools: ["Mobile App", "Product Design", "Marketplace"],
+    tools: ["Mobile App", "Product Design", "Marketplace", "Coming Soon"],
     icon: Smartphone,
     link: "https://car-repaipal-real.vercel.app/",
     linkLabel: "View App",

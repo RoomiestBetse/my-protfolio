@@ -6,22 +6,22 @@ const services = [
   {
     n: "01",
     title: "Accounting & Bookkeeping",
-    desc: "Sage 50, Excel, financial reporting and clean record-keeping.",
+    desc: "Sage 50, QuickBooks, Excel — financial reporting, reconciliations, and clean record-keeping.",
   },
   {
     n: "02",
     title: "Operations & Logistics",
-    desc: "Workflow management, inventory systems, and on-time delivery.",
+    desc: "Inventory management, routing, order processing, and keeping high-volume workflows on track.",
   },
   {
     n: "03",
     title: "Data & Reporting",
-    desc: "Data entry, spreadsheet modeling, and translating numbers into clear stories.",
+    desc: "Excel (pivot tables, VLOOKUP, formulas), data entry, and turning raw numbers into clear summaries.",
   },
   {
     n: "04",
-    title: "Problem Solving",
-    desc: "Catching mistakes early and solving issues in real time so the work keeps moving.",
+    title: "Admin & Office",
+    desc: "Microsoft Office Suite, Google Workspace, documentation, scheduling, and general business support.",
   },
 ];
 
