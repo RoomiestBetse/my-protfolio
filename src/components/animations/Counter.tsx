@@ -13,7 +13,7 @@ interface CounterProps {
 
 export const Counter = ({ to, from = 0, duration = 1800, suffix = "", decimals = 0, className, onComplete }: CounterProps) => {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: false, margin: "-80px" });
+  const inView = useInView(ref, { once: true, margin: "-80px" });
   const [val, setVal] = useState(from);
 
   useEffect(() => {

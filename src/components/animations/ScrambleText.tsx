@@ -12,7 +12,7 @@ interface ScrambleTextProps {
 export const ScrambleText = ({ text, as = "h2", className = "" }: ScrambleTextProps) => {
   const reduce = useReducedMotion();
   const ref = useRef<HTMLHeadingElement>(null);
-  const inView = useInView(ref, { once: false, margin: "-80px" });
+  const inView = useInView(ref, { once: true, margin: "-80px" });
   const [display, setDisplay] = useState(text);
   const Tag = as as any;
 

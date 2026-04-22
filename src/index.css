@@ -153,7 +153,6 @@
     opacity: 0.35;
     border-radius: 50%;
     pointer-events: none;
-    will-change: transform;
   }
 
   .hairline {
@@ -222,7 +221,6 @@
   /* Glowing left-border for skill rows */
   .glow-row {
     transition: box-shadow 0.35s ease, padding-left 0.35s ease;
-    will-change: box-shadow;
   }
   .glow-row:hover {
     box-shadow: inset 3px 0 0 hsl(var(--primary) / 0.75);
