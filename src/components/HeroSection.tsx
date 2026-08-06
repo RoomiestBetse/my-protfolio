@@ -202,7 +202,7 @@ const HeroSection = () => {
             transition={{ delay: 0.9, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="text-base md:text-lg text-muted-foreground max-w-md leading-relaxed"
           >
-            Junior accountant and NAIT Business Administration Accounting student with hands-on experience in bookkeeping, accounts payable, and accounts receivable.
+            NAIT Business Administration Accounting student with practical experience in bookkeeping, accounting support, and business operations.
           </motion.p>
 
           <motion.div
