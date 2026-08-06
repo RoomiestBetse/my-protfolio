@@ -173,14 +173,14 @@ const HeroSection = () => {
           {/* Headings */}
           <div className="relative z-10 overflow-hidden">
             <AnimatedHeading
-              text="HI, I'M"
+              text="BETSE"
               delay={0.1}
               stagger={0.05}
               className="mega-headline text-foreground"
             />
-            {/* "BETSE." — cryptic scramble on load */}
+            {/* Last name — cryptic scramble on load */}
             <HeroScramble
-              text="BETSE."
+              text="ESSILFIE."
               delay={0.35}
               className="mega-headline gradient-text-animated"
             />
