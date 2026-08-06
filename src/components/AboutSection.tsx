@@ -21,14 +21,14 @@ const AboutSection = () => {
         <div className="space-y-6 text-lg md:text-2xl text-foreground/85 leading-relaxed font-light max-w-3xl mx-auto">
           <Reveal delay={0.1}>
             <p>
-              I'm a Junior Accountant and Business Administration Accounting student at <span className="gradient-text font-semibold">NAIT</span>,
-              building practical experience across accounts payable, accounts receivable, bookkeeping, and financial record-keeping.
+              I'm a Business Administration Accounting student at <span className="gradient-text font-semibold">NAIT</span> with practical
+              experience in bookkeeping, accounting support, invoice review, and financial record-keeping.
             </p>
           </Reveal>
           <Reveal delay={0.2}>
             <p>
-              At MyVic Property Management, I review invoices and statements, maintain tenant and vendor records,
-              and support accurate day-to-day accounting in a fast-paced office.
+              During my time at MyVic Property Management, I reviewed invoices and statements, maintained tenant
+              and vendor records, and supported accurate day-to-day accounting in a fast-paced office.
             </p>
           </Reveal>
           <Reveal delay={0.3}>

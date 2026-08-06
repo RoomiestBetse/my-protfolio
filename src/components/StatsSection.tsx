@@ -4,7 +4,7 @@ import { Counter } from "@/components/animations/Counter";
 import { Reveal } from "@/components/animations/Reveal";
 
 const stats = [
-  { value: 2026, suffix: "", label: "Junior accountant since" },
+  { value: 2021, suffix: "", label: "Studying accounting since" },
   { value: 3, suffix: "", label: "Years at Lordco" },
   { value: 3, suffix: "", label: "Languages spoken" },
   { value: 4, suffix: "", label: "Core accounting strengths" },

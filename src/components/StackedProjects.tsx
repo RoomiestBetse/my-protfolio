@@ -24,7 +24,7 @@ const projects: Project[] = [
   {
     n: "01",
     client: "MYVIC PROPERTY MANAGEMENT",
-    date: "May 2026 – Present",
+    date: "May 2026 – 2026",
     title: "Junior Accountant",
     tagline: "Accurate records, careful review, and dependable accounting support.",
     bullets: [
