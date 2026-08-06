@@ -202,7 +202,7 @@ const HeroSection = () => {
             transition={{ delay: 0.9, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="text-base md:text-lg text-muted-foreground max-w-md leading-relaxed"
           >
-            NAIT Accounting student and operations specialist — open to full-time, part-time, and co-op roles.
+            Junior accountant and NAIT Business Administration Accounting student with hands-on experience in bookkeeping, accounts payable, and accounts receivable.
           </motion.p>
 
           <motion.div

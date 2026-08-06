@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from "framer-motion";
-import { Calculator, Truck, BarChart2, Briefcase } from "lucide-react";
+import { Calculator, ReceiptText, FolderCheck, Briefcase } from "lucide-react";
 import { ScrambleText } from "@/components/animations/ScrambleText";
 import { Reveal } from "@/components/animations/Reveal";
 
@@ -7,26 +7,26 @@ const services = [
   {
     n: "01",
     icon: Calculator,
-    title: "Accounting & Bookkeeping",
-    desc: "Sage 50, QuickBooks, Excel — financial reporting, reconciliations, and clean record-keeping.",
+    title: "Accounts Payable & Receivable",
+    desc: "Supporting accurate payables and receivables, reviewing account details, and keeping day-to-day transactions organized.",
   },
   {
     n: "02",
-    icon: Truck,
-    title: "Operations & Logistics",
-    desc: "Inventory management, routing, order processing, and keeping high-volume workflows on track.",
+    icon: ReceiptText,
+    title: "Invoice Review",
+    desc: "Reviewing invoices, statements, and supporting documents carefully for completeness and accuracy.",
   },
   {
     n: "03",
-    icon: BarChart2,
-    title: "Data & Reporting",
-    desc: "Excel (pivot tables, VLOOKUP, formulas), data entry, and turning raw numbers into clear summaries.",
+    icon: FolderCheck,
+    title: "Bookkeeping & Records",
+    desc: "Maintaining organized accounting files and accurate tenant and vendor information for property operations.",
   },
   {
     n: "04",
     icon: Briefcase,
-    title: "Admin & Office",
-    desc: "Microsoft Office Suite, Google Workspace, documentation, scheduling, and general business support.",
+    title: "Business Operations",
+    desc: "Administrative support, coordination, planning, and calm problem-solving in fast-paced environments.",
   },
 ];
 

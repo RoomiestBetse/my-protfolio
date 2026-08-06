@@ -21,20 +21,20 @@ const AboutSection = () => {
         <div className="space-y-6 text-lg md:text-2xl text-foreground/85 leading-relaxed font-light max-w-3xl mx-auto">
           <Reveal delay={0.1}>
             <p>
-              I'm an Accounting co-op student at <span className="gradient-text font-semibold">NAIT</span> (expected graduation 2027),
-              learning financial reporting, business systems, and how operations actually run.
+              I'm a Junior Accountant and Business Administration Accounting student at <span className="gradient-text font-semibold">NAIT</span>,
+              building practical experience across accounts payable, accounts receivable, bookkeeping, and financial record-keeping.
             </p>
           </Reveal>
           <Reveal delay={0.2}>
             <p>
-              With 5+ years in auto parts logistics and operations, I know how to stay organized, catch
-              mistakes early, and keep things running smoothly under pressure.
+              At MyVic Property Management, I review invoices and statements, maintain tenant and vendor records,
+              and support accurate day-to-day accounting in a fast-paced office.
             </p>
           </Reveal>
           <Reveal delay={0.3}>
             <p>
-              I'm open to any opportunity — accounting, admin, operations, or anything where I can contribute
-              and grow. I'm ready to get to work.
+              My earlier dispatch and automotive operations experience strengthened my organization, communication,
+              and problem-solving skills — strengths I now bring to every accounting task.
             </p>
           </Reveal>
         </div>

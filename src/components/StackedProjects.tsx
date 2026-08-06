@@ -1,50 +1,10 @@
-import { ReactNode, useRef, MouseEvent, useEffect } from "react";
+import { ReactNode, useRef, MouseEvent } from "react";
 import { motion, useScroll, useTransform, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, Truck, Package, Smartphone } from "lucide-react";
+import { ArrowUpRight, Truck, Calculator, Car } from "lucide-react";
 import { ScrambleText } from "@/components/animations/ScrambleText";
 import { Reveal } from "@/components/animations/Reveal";
 import lordcoImg from "@/assets/lordco.jpg";
-import napaImg from "@/assets/napa.jpg";
-
-const AppDemoVideo = () => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  useEffect(() => {
-    const v = videoRef.current;
-    if (!v) return;
-    v.muted = true;
-    const play = () => { v.muted = true; v.play().catch(() => {}); };
-    // Try immediately and on canplay
-    play();
-    v.addEventListener("canplay", play, { once: true });
-    // Fallback: play on first user interaction anywhere on the page
-    const onInteract = () => play();
-    document.addEventListener("scroll", onInteract, { once: true, passive: true });
-    document.addEventListener("click", onInteract, { once: true });
-    document.addEventListener("pointerdown", onInteract, { once: true });
-    return () => {
-      v.removeEventListener("canplay", play);
-      document.removeEventListener("scroll", onInteract);
-      document.removeEventListener("click", onInteract);
-      document.removeEventListener("pointerdown", onInteract);
-    };
-  }, []);
-  return (
-    <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-fuchsia-500/30 via-indigo-500/20 to-violet-500/30 flex items-center justify-center">
-      <div className="relative w-[180px] aspect-[9/16] rounded-[1.5rem] overflow-hidden border-4 border-foreground/10 shadow-2xl">
-        <video
-          ref={videoRef}
-          src="/app-demo.mov"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          className="w-full h-full object-cover"
-        />
-      </div>
-    </div>
-  );
-};
+import carImg from "@/assets/car-exterior.jpg";
 
 interface Project {
   n: string;
@@ -63,47 +23,47 @@ interface Project {
 const projects: Project[] = [
   {
     n: "01",
-    client: "LORDCO AUTO PARTS",
-    date: "Sept 2023 – Present",
-    title: "Delivery & Operations",
-    tagline: "High-volume routes, tight coordination, real-time decisions.",
+    client: "MYVIC PROPERTY MANAGEMENT",
+    date: "May 2026 – Present",
+    title: "Junior Accountant",
+    tagline: "Accurate records, careful review, and dependable accounting support.",
     bullets: [
-      "Managed delivery routes and urgent requests",
-      "Sped up workflows to stay ahead of the day",
-      "Kept documentation and inventory dialed in",
+      "Support accounts payable and accounts receivable tasks",
+      "Review invoices, statements, and supporting documents",
+      "Maintain accounting files and tenant/vendor information",
+      "Assist with bookkeeping and administrative tasks",
     ],
-    tools: ["Workflow Management", "Inventory Systems", "Routing"],
-    icon: Truck,
+    tools: ["Accounts Payable", "Accounts Receivable", "Bookkeeping", "Invoice Review"],
+    icon: Calculator,
     media: (
-      <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border/40 group">
-        <img src={lordcoImg} alt="Lordco Auto Parts storefront" loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-        <div className="absolute inset-0 flex items-end justify-center pb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-400">
-          <span className="flex items-center gap-2 text-foreground font-semibold uppercase tracking-wider text-xs bg-background/60 backdrop-blur-md px-4 py-2 rounded-full border border-border/50">
-            View Project <ArrowUpRight size={13} />
-          </span>
+      <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border/40 bg-gradient-to-br from-violet-500/30 via-indigo-500/15 to-background flex items-center justify-center">
+        <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "linear-gradient(hsl(var(--border)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--border)) 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
+        <div className="relative w-36 h-36 md:w-44 md:h-44 rounded-full border border-primary/30 bg-background/50 backdrop-blur-md flex items-center justify-center shadow-[0_0_80px_hsl(var(--primary)/0.25)]">
+          <Calculator size={72} strokeWidth={1.2} className="text-primary" aria-hidden />
         </div>
       </div>
     ),
   },
   {
     n: "02",
-    client: "NAPA AUTO PARTS",
-    date: "Feb 2021 – Dec 2023",
-    title: "Inventory & Logistics",
-    tagline: "Precise parts handling, time-sensitive orders, zero excuses.",
+    client: "LORDCO AUTO PARTS",
+    date: "Sept 2023 – Apr 2026",
+    title: "Driver & Dispatcher",
+    tagline: "Coordinated time-sensitive operations with accuracy and clear communication.",
     bullets: [
-      "Handled deliveries and kept inventory flowing",
-      "Made sure urgent orders shipped on time",
-      "Worked with the team to sort out issues fast",
+      "Organized routes and managed time-sensitive requests",
+      "Analyzed workflows to support efficient, on-time service",
+      "Maintained accurate records and managed inventory",
+      "Resolved operational issues to minimize disruptions",
     ],
-    tools: ["Inventory Management", "Order Processing", "Parts Tracking"],
-    icon: Package,
+    tools: ["Coordination", "Record Keeping", "Inventory", "Customer Service"],
+    icon: Truck,
     media: (
       <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border/40 group">
-        <img src={napaImg} alt="NAPA Auto Parts storefront" loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+        <img src={lordcoImg} alt="Lordco Auto Parts storefront" loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
         <div className="absolute inset-0 flex items-end justify-center pb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-400">
           <span className="flex items-center gap-2 text-foreground font-semibold uppercase tracking-wider text-xs bg-background/60 backdrop-blur-md px-4 py-2 rounded-full border border-border/50">
-            View Project <ArrowUpRight size={13} />
+            Operations Experience <ArrowUpRight size={13} />
           </span>
         </div>
       </div>
@@ -111,19 +71,23 @@ const projects: Project[] = [
   },
   {
     n: "03",
-    client: "PERSONAL BUILD",
-    title: "RepairPal — Mobile App",
-    tagline: "Helping car owners get honest prices from local shops.",
+    client: "WATERLOO FORD",
+    date: "Oct 2020 – Dec 2021",
+    title: "Service Porter",
+    tagline: "Safe, timely vehicle transport backed by reliable route planning.",
     bullets: [
-      "Designed and built the full app experience",
-      "Quote system with shop comparison",
-      "Coming soon — actively building toward launch",
+      "Transported vehicles between locations and to customers",
+      "Used efficient routes to support timely deliveries",
+      "Maintained vehicle safety and condition during transport",
     ],
-    tools: ["Mobile App", "Product Design", "Marketplace", "Coming Soon"],
-    icon: Smartphone,
-    link: "https://car-repaipal-real.vercel.app/",
-    linkLabel: "View App",
-    media: <AppDemoVideo />,
+    tools: ["Route Planning", "Time Management", "Vehicle Care", "Customer Service"],
+    icon: Car,
+    media: (
+      <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border/40 group">
+        <img src={carImg} alt="Vehicle representing service porter experience" loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
+      </div>
+    ),
   },
 ];
 
@@ -224,7 +188,7 @@ const ProjectCard = ({ p, index, total }: { p: Project; index: number; total: nu
             rel={p.link ? "noopener noreferrer" : undefined}
             className={p.link ? "gradient-pill inline-flex items-center gap-2 !px-10 !py-4 !text-sm font-bold tracking-widest shadow-[0_0_40px_-5px_hsl(265_85%_55%/0.8)]" : "outline-pill"}
           >
-            {p.linkLabel ?? "Live Project →"}
+            {p.linkLabel ?? "Let's Connect →"}
             {p.link && <ArrowUpRight size={15} />}
           </a>
         </div>
@@ -241,7 +205,7 @@ const StackedProjects = () => {
       <div className="max-w-7xl mx-auto">
         <Reveal>
           <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-muted-foreground mb-6">
-            ( Work Experience & Projects )
+            ( Professional Experience )
           </p>
         </Reveal>
         <ScrambleText as="h2" text="EXPERIENCE" className="mega-headline mb-16 gradient-text" />

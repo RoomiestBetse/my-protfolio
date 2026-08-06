@@ -4,10 +4,10 @@ import { Counter } from "@/components/animations/Counter";
 import { Reveal } from "@/components/animations/Reveal";
 
 const stats = [
-  { value: 5, suffix: "+", label: "Years in auto parts & ops" },
-  { value: 15, suffix: "k+", label: "Parts & orders handled" },
-  { value: 2, suffix: "", label: "Major employers" },
-  { value: 2027, suffix: "", label: "NAIT Grad Year" },
+  { value: 2026, suffix: "", label: "Junior accountant since" },
+  { value: 3, suffix: "", label: "Years at Lordco" },
+  { value: 3, suffix: "", label: "Languages spoken" },
+  { value: 4, suffix: "", label: "Core accounting strengths" },
 ];
 
 const PARTICLE_COUNT = 10;

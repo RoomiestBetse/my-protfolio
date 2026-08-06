@@ -1,15 +1,15 @@
 // CSS-driven marquee — runs on compositor thread, zero JS per frame
 const tags = [
-  "Sage 50",
+  "Accounts Payable",
   "Microsoft Excel",
   "NAIT Accounting",
-  "Operations",
-  "Logistics",
-  "Inventory Systems",
-  "Financial Reporting",
-  "QuickBooks",
-  "Data Entry",
-  "Google Workspace",
+  "Accounts Receivable",
+  "Bookkeeping",
+  "Invoice Review",
+  "Financial Records",
+  "Vendor Records",
+  "Administrative Support",
+  "Property Management",
   "Problem Solving",
   "Customer Service",
 ];
