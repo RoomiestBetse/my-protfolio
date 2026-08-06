@@ -1,9 +1,29 @@
 import { ReactNode, useRef, MouseEvent } from "react";
 import { motion, useScroll, useTransform, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, Truck, Calculator, Car } from "lucide-react";
+import { ArrowUpRight, Truck, Calculator, Car, Smartphone, Play } from "lucide-react";
 import { ScrambleText } from "@/components/animations/ScrambleText";
 import { Reveal } from "@/components/animations/Reveal";
 import lordcoImg from "@/assets/lordco.jpg";
+import appMockup from "@/assets/app-mockup.jpg";
+
+const AppDemoVideo = () => (
+  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border/40 bg-gradient-to-br from-fuchsia-500/25 via-indigo-500/15 to-violet-500/25 flex items-center justify-center">
+    <div className="relative w-[180px] aspect-[9/16] rounded-[1.5rem] overflow-hidden border-4 border-foreground/10 shadow-2xl bg-background">
+      <video
+        src="/app-demo.mov"
+        poster={appMockup}
+        controls
+        playsInline
+        preload="none"
+        aria-label="RepairPal mobile app demonstration"
+        className="w-full h-full object-cover"
+      />
+    </div>
+    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-wider text-foreground/75 bg-background/70 px-3 py-2 rounded-full pointer-events-none">
+      <Play size={12} fill="currentColor" /> Play demo
+    </div>
+  </div>
+);
 
 interface Project {
   n: string;
@@ -89,6 +109,22 @@ const projects: Project[] = [
         </div>
       </div>
     ),
+  },
+  {
+    n: "04",
+    client: "PERSONAL PROJECT",
+    title: "RepairPal — Mobile App",
+    tagline: "Helping car owners compare repair quotes from local shops.",
+    bullets: [
+      "Designed and built the complete app experience",
+      "Created a quote comparison flow for customers and repair shops",
+      "Developed the product from concept toward launch",
+    ],
+    tools: ["Mobile App", "Product Design", "Marketplace", "Problem Solving"],
+    icon: Smartphone,
+    link: "https://car-repaipal-real.vercel.app/",
+    linkLabel: "View App",
+    media: <AppDemoVideo />,
   },
 ];
 
