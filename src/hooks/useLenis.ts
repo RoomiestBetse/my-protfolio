@@ -19,10 +19,20 @@ export const useLenis = () => {
       lenis.raf(time);
       rafId = requestAnimationFrame(raf);
     };
-    rafId = requestAnimationFrame(raf);
+    const start = () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(raf);
+    };
+    const handleVisibility = () => {
+      if (document.hidden) cancelAnimationFrame(rafId);
+      else start();
+    };
+    start();
+    document.addEventListener("visibilitychange", handleVisibility);
 
     return () => {
       cancelAnimationFrame(rafId);
+      document.removeEventListener("visibilitychange", handleVisibility);
       lenis.destroy();
     };
   }, []);

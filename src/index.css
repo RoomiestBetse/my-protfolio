@@ -93,6 +93,8 @@
   .section-pad {
     @apply px-6 md:px-12 lg:px-20 py-24 md:py-32;
     contain: layout paint;
+    content-visibility: auto;
+    contain-intrinsic-size: auto 900px;
   }
 
   .mega-headline {
@@ -206,16 +208,16 @@
     100% { transform: scale(3.5); opacity: 0; }
   }
 
-  /* Grain overlay — lightweight PNG-based, no SVG filter on every frame */
+  /* Static grain — avoids a full-screen SVG turbulence filter. */
   .grain-overlay {
     position: fixed;
     inset: 0;
     pointer-events: none;
     z-index: 999;
     opacity: 0.025;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-image: radial-gradient(hsl(var(--foreground) / 0.22) 0.55px, transparent 0.7px);
     background-repeat: repeat;
-    background-size: 180px;
+    background-size: 4px 4px;
   }
 
   /* Glowing left-border for skill rows */
@@ -239,5 +241,7 @@
   /* Disable expensive 3D/blur effects on devices that can't handle them */
   @media (hover: none) {
     .grain-overlay { display: none; }
+    .gradient-orb { filter: blur(30px); opacity: 0.22; }
+    .glass-card { backdrop-filter: none; background: hsl(var(--card) / 0.82); }
   }
 }

@@ -4,7 +4,6 @@ import { ArrowUpRight, Truck, Calculator, Car } from "lucide-react";
 import { ScrambleText } from "@/components/animations/ScrambleText";
 import { Reveal } from "@/components/animations/Reveal";
 import lordcoImg from "@/assets/lordco.jpg";
-import carImg from "@/assets/car-exterior.jpg";
 
 interface Project {
   n: string;
@@ -83,9 +82,11 @@ const projects: Project[] = [
     tools: ["Route Planning", "Time Management", "Vehicle Care", "Customer Service"],
     icon: Car,
     media: (
-      <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border/40 group">
-        <img src={carImg} alt="Vehicle representing service porter experience" loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
+      <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border/40 bg-gradient-to-br from-indigo-500/25 via-violet-500/10 to-background flex items-center justify-center">
+        <div className="absolute inset-0 opacity-25" style={{ backgroundImage: "radial-gradient(circle at center, hsl(var(--primary) / 0.5) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
+        <div className="relative w-36 h-36 md:w-44 md:h-44 rounded-full border border-primary/30 bg-background/60 flex items-center justify-center shadow-[0_0_70px_hsl(var(--primary)/0.2)]">
+          <Car size={72} strokeWidth={1.2} className="text-primary" aria-hidden />
+        </div>
       </div>
     ),
   },

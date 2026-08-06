@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import { useLenis } from "@/hooks/useLenis";
@@ -28,16 +28,26 @@ const Index = () => {
   const auroraY = useSpring(rawY, { stiffness: 22, damping: 18, mass: 1.2 });
   const aurora2X = useSpring(rawX, { stiffness: 14, damping: 22, mass: 1.8 });
   const aurora2Y = useSpring(rawY, { stiffness: 14, damping: 22, mass: 1.8 });
+  const pointerFrame = useRef<number | null>(null);
+  const finePointer = typeof window !== "undefined" && window.matchMedia("(pointer: fine)").matches;
 
   useEffect(() => {
-    if (reduce) return;
+    if (reduce || !finePointer) return;
     const onMove = (e: globalThis.MouseEvent) => {
-      rawX.set(e.clientX);
-      rawY.set(e.clientY);
+      if (pointerFrame.current !== null) return;
+      const { clientX, clientY } = e;
+      pointerFrame.current = requestAnimationFrame(() => {
+        rawX.set(clientX);
+        rawY.set(clientY);
+        pointerFrame.current = null;
+      });
     };
     window.addEventListener("mousemove", onMove, { passive: true });
-    return () => window.removeEventListener("mousemove", onMove);
-  }, [reduce, rawX, rawY]);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      if (pointerFrame.current !== null) cancelAnimationFrame(pointerFrame.current);
+    };
+  }, [reduce, finePointer, rawX, rawY]);
 
   return (
     <div className="relative min-h-screen">
@@ -61,7 +71,7 @@ const Index = () => {
       />
 
       {/* Layer 4 — cursor-following aurora (above vignette, below content) */}
-      {!reduce && (
+      {!reduce && finePointer && (
         <>
           <motion.div
             aria-hidden

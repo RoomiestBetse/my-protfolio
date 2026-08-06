@@ -1,4 +1,4 @@
-import { useRef, useState, MouseEvent } from "react";
+import { useEffect, useRef, useState, MouseEvent } from "react";
 import { createPortal } from "react-dom";
 import { motion, useMotionValue, useSpring, useReducedMotion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
@@ -67,7 +67,7 @@ const CursorPreview = ({
         >
           {/* Image peek */}
           <div className="relative aspect-[16/9] overflow-hidden">
-            <img src={card.img} alt={card.title} className="w-full h-full object-cover" />
+            <img src={card.img} alt={card.title} loading="lazy" decoding="async" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-card via-card/10 to-transparent" />
             <span
               className="absolute top-3 left-3 font-display font-bold text-xl text-transparent"
@@ -119,14 +119,25 @@ const TiltCard = ({
   const rotateY = useMotionValue(0);
   const springX = useSpring(rotateX, { stiffness: 80, damping: 20 });
   const springY = useSpring(rotateY, { stiffness: 80, damping: 20 });
+  const tiltFrame = useRef<number | null>(null);
+
+  useEffect(() => () => {
+    if (tiltFrame.current !== null) cancelAnimationFrame(tiltFrame.current);
+  }, []);
 
   const handleMouseMove = (e: MouseEvent) => {
-    if (reduce || !ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width;
-    const y = (e.clientY - rect.top) / rect.height;
-    rotateX.set((y - 0.5) * -10);
-    rotateY.set((x - 0.5) * 10);
+    if (reduce || !ref.current || tiltFrame.current !== null) return;
+    const { clientX, clientY } = e;
+    tiltFrame.current = requestAnimationFrame(() => {
+      if (ref.current) {
+        const rect = ref.current.getBoundingClientRect();
+        const x = (clientX - rect.left) / rect.width;
+        const y = (clientY - rect.top) / rect.height;
+        rotateX.set((y - 0.5) * -10);
+        rotateY.set((x - 0.5) * 10);
+      }
+      tiltFrame.current = null;
+    });
   };
 
   const handleMouseLeave = () => {
@@ -181,6 +192,7 @@ const CarProjectsSection = () => {
   const [active, setActive] = useState<number | null>(null);
   const [hovered, setHovered] = useState<number | null>(null);
   const reduce = useReducedMotion();
+  const finePointer = !reduce && typeof window !== "undefined" && window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 1024px)").matches;
 
   const rawX = useMotionValue(-9999);
   const rawY = useMotionValue(-9999);
@@ -196,10 +208,10 @@ const CarProjectsSection = () => {
     <section
       id="cars"
       className="relative section-pad"
-      onMouseMove={handleSectionMouseMove}
+      onMouseMove={finePointer ? handleSectionMouseMove : undefined}
     >
       {/* Cursor-following preview — portaled to body to escape section stacking context */}
-      {!reduce && createPortal(
+      {finePointer && createPortal(
         <CursorPreview
           card={hovered !== null ? carCards[hovered] : null}
           x={cursorX}
@@ -295,6 +307,8 @@ const ModalCard = ({ card }: { card: (typeof carCards)[number] }) => {
                 <img
                   src={card.img}
                   alt={card.modalTitle}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />

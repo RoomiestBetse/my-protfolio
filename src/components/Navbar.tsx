@@ -33,7 +33,7 @@ const Navbar = () => {
       style={{ willChange: "transform" }}
     >
       <div className="mx-auto max-w-7xl px-6 md:px-12 mt-4">
-        <div className="flex items-center justify-between h-14 px-5 md:px-7 rounded-full bg-background/60 backdrop-blur-xl border border-border/40">
+        <div className="flex items-center justify-between h-14 px-5 md:px-7 rounded-full bg-background/75 backdrop-blur-md border border-border/40">
           <a href="#hero" className="font-display text-lg font-bold tracking-tight uppercase">
             Betse<span className="gradient-text">.</span>
           </a>
